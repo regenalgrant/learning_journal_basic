@@ -13,6 +13,12 @@ requires = [
     'pyramid_chameleon',
     'pyramid_debugtoolbar',
     'waitress',
+    'SQLAlchemy',
+    'transaction',
+    'zope.sqlalchemy',
+    'waittress',
+    'pyramid_ipython',
+
     ]
 
 tests_require = [
@@ -21,9 +27,9 @@ tests_require = [
     'pytest-cov',
     ]
 
-setup(name='demoapp',
+setup(name='learning_journal',
       version='0.0',
-      description='demoapp',
+      description='learning_journal',
       long_description=README + '\n\n' + CHANGES,
       classifiers=[
           "Programming Language :: Python",
@@ -31,8 +37,8 @@ setup(name='demoapp',
           "Topic :: Internet :: WWW/HTTP",
           "Topic :: Internet :: WWW/HTTP :: WSGI :: Application",
       ],
-      author='',
-      author_email='',
+      author='Regenal Grant',
+      author_email='regenal@mac.com',
       url='',
       keywords='web pyramid pylons',
       packages=find_packages(),
@@ -44,6 +50,8 @@ setup(name='demoapp',
       install_requires=requires,
       entry_points="""\
       [paste.app_factory]
-      main = demoapp:main
+      main = learning_journal:main
+      [console_scripts]
+      initialize_db
       """,
       )
