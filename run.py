@@ -1,5 +1,5 @@
-"""Run startup demoapp."""
+"""Run startup learning_journal."""
 #!/bin/bash
 set -e
 python setup.py develop
-python runapp.py 
+python runapp.py
