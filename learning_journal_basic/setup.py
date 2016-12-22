@@ -21,9 +21,9 @@ tests_require = [
     'pytest-cov',
     ]
 
-setup(name='demoapp',
+setup(name='learning_journal',
       version='0.0',
-      description='demoapp',
+      description='learning_journal',
       long_description=README + '\n\n' + CHANGES,
       classifiers=[
           "Programming Language :: Python",
@@ -44,6 +44,6 @@ setup(name='demoapp',
       install_requires=requires,
       entry_points="""\
       [paste.app_factory]
-      main = demoapp:main
+      main = learning_journal:main
       """,
       )
