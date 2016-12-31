@@ -12,9 +12,13 @@ requires = [
     'pyramid',
     'pyramid_jinja2',
     'pyramid_debugtoolbar',
-    'waitress',
-    'ipython',
+    'pyramid_tm',
     'pyramid_ipython',
+    'ipython',
+    'SQLAlchemy',
+    'transaction',
+    'zope.sqlalchemy',
+    'waitress',
 ]
 
 tests_require = [
@@ -35,9 +39,9 @@ setup(name='learning_journal_basic',
           "Topic :: Internet :: WWW/HTTP :: WSGI :: Application",
       ],
       author='Regenal Grant',
-      author_email='midfies@gmail.com',
+      author_email='regenal@gmail.com',
       url='',
-      keywords='web pyramid pylons',
+      keywords='web wsgi bfg pylons pyramid',
       packages=find_packages(),
       include_package_data=True,
       zip_safe=False,
@@ -47,6 +51,8 @@ setup(name='learning_journal_basic',
       install_requires=requires,
       entry_points="""\
       [paste.app_factory]
-      main = learning_journal_basic:main
+      main = learning_journal:main
+      [console_scripts]
+      init_db = learning_journal.scripts.initializedb:main
       """,
       )
