@@ -63,4 +63,3 @@ def includeme(config):
         'dbsession',
         reify=True
     )
-    
