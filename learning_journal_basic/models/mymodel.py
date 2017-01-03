@@ -6,7 +6,7 @@ from sqlalchemy import (
     Date,
 )
 
-from .meta import Base
+from learning_journal_basic.models.meta import Base
 
 
 class Entry(Base):
