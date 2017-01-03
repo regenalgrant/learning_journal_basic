@@ -51,5 +51,3 @@ def bfs(graph, start, goal):
             new_path = list(path)
             new_path.append(adjacent)
             queue.append(new_path)
-
-if __name__ == '__main__':
