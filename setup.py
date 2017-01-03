@@ -51,7 +51,7 @@ setup(name='learning_journal_basic',
       install_requires=requires,
       entry_points="""\
       [paste.app_factory]
-      main = learning_journal:main
+      main = learning_journal_basic:main
       [console_scripts]
       init_db = learning_journal_basic.scripts.initializedb:main
       """,
