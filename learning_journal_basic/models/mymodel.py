@@ -1,12 +1,11 @@
 from sqlalchemy import (
     Column,
-    Index,
     Integer,
     Unicode,
     Date,
 )
 
-from learning_journal_basic.models.meta import Base
+from .meta import Base
 
 
 class Entry(Base):
