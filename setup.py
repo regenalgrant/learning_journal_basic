@@ -53,6 +53,6 @@ setup(name='learning_journal_basic',
       [paste.app_factory]
       main = learning_journal:main
       [console_scripts]
-      init_db = learning_journal.scripts.initializedb:main
+      init_db = learning_journal_basic.scripts.initializedb:main
       """,
       )
