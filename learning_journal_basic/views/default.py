@@ -6,6 +6,7 @@ from pyramid.httpexceptions import HTTPFound
 from sqlalchemy.exc import DBAPIError
 from pyramid.view import notfound_view_config
 from learning_journal_basic.security import check_credentials
+from pyramid.security import remember, forget
 from ..models import Entry
 import datetime
 
