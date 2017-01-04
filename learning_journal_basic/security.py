@@ -9,6 +9,7 @@ def includeme(config):
         secret=auth_secret,
         hashalg="sha512"
     )
-    authz_policy =ACLAuthorizationPolicy()
+    authz_policy = ACLAuthorizationPolicy()
     config.set_authentication_policy(authn_policy)
     config.set_authentication_policy(authz_policy)
+    config.set_default_permission("view")
