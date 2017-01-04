@@ -5,7 +5,7 @@ from pyramid.view import view_config
 from pyramid.httpexceptions import HTTPFound
 from sqlalchemy.exc import DBAPIError
 from pyramid.view import notfound_view_config
-
+from learning_journal_basic.security import check_credentials
 from ..models import Entry
 import datetime
 
@@ -58,5 +58,24 @@ def about_view(request):
     """View for about me."""
     return {}
 
+@view_config(route_name="login", renderer="../templates/login.jinja2")
+def login_view(request):
+    """creating login."""
+    if request.POST:
+        username = request.POST["username"]
+        password = request.POST["password"]
+        if check_credentials(username, password):
+            auth_head = remember(request, username)
+            return HTTPFound(
+                request.route_url("list")
+                headers=auth_head
+            )
+
+    return {}
+
+@view_config(route_name="logout", renderer="../templates/login.jinja2")
+def logout_view(request):
+    auth_head = forget(request)
+    return HTTPFound(request.route_url("list"), headers=auth_head)
 
 db_err_msg = """"""

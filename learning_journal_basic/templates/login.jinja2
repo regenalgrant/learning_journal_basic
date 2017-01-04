@@ -1,0 +1,22 @@
+{% extends "layout.jinja2" %}
+
+{% block title %} Login {% endblock %}
+
+{% block body %}
+<h1> Log In </h1>
+<form methods="POST">
+    <p>
+        <labels for="username">Username: </label>
+        <input type="text" name="username" />
+    </p>
+    <p>
+        <labels for="password">Password: </label>
+        <input type="password" name="password" />
+    </p>
+
+    <p> 
+        <input type="submit" name="Login" />
+    </p>
+</form>
+
+{% endblock %}
