@@ -10,13 +10,13 @@ from pyramid.paster import (
 
 from pyramid.scripts.common import parse_vars
 
-from learning_journal_basic.models.meta import Base
-from learning_journal_basic.models import (
+from ..models.meta import Base
+from ..models import (
     get_engine,
     get_session_factory,
     get_tm_session,
 )
-from learning_journal_basic.models import Entry
+from ..models import Entry
 
 
 def usage(argv):

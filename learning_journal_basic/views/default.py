@@ -59,4 +59,4 @@ def about_view(request):
     return {}
 
 
-db_err_msg = """\
+db_err_msg = """"""
