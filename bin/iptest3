@@ -1,0 +1,10 @@
+#!/Users/regenal/Codefellows-401/learning_journal_basic/bin/python
+# EASY-INSTALL-ENTRY-SCRIPT: 'ipython==5.1.0','console_scripts','iptest3'
+__requires__ = 'ipython==5.1.0'
+import sys
+from pkg_resources import load_entry_point
+
+if __name__ == '__main__':
+    sys.exit(
+        load_entry_point('ipython==5.1.0', 'console_scripts', 'iptest3')()
+    )
