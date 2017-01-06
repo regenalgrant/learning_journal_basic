@@ -5,8 +5,8 @@ $(document).ready(function(){
         $.ajax({
             url: 'delete/' + $(this).attr("data"),
             data: {
-                "item": "some name",
-                "edit": "journal"
+                "item": "entry",
+                "edit": "bloh"
             }
             success: function(){
                 console.log("deleted");

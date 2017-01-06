@@ -65,5 +65,5 @@ def test_auth_app_can_see_create_route(set_auth_credentials, testapp):
         "username": "testme",
         "password": "foobar"
     })
-    response = testapp.get("/new-expense")
+    response = testapp.get("/new-entry")
     assert response.status_code == 200
