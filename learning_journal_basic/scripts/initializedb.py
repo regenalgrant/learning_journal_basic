@@ -2,6 +2,7 @@ import os
 import sys
 import transaction
 import datetime
+import random
 
 from pyramid.paster import (
     get_appsettings,

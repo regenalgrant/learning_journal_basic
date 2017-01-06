@@ -2,6 +2,20 @@ import pytest
 from pyramid import testing
 
 
+@pytest.fixture(scope="session")
+def configuration(request):
+   settings = {
+        'sqlalchemy.url': 'sqlite:///:memory:'}  # points to an in-memory database.
+    config = testing.setUp(settings=settings)
+    config.include('.models')
+
+    def teardown():
+        testing.tearDown()
+
+    request.addfinalizer(teardown)
+    return config
+
+
 @pytest.fixture
 def req():
     """Dummy request."""
@@ -35,3 +49,21 @@ def test_details_page_renders_details_page_stuff(req):
     from .views import detail_view
     response = detail_view(req)
     assert "An individual Post" in response
+
+    # ======== TESTING WITH SECURITY ==========
+
+
+def test_create_route_is_forbidden(testapp):
+    """Any old user shouldn't be able to access the create view."""
+    response = testapp.get("/new-expense", status=403)
+    assert response.status_code == 403
+
+
+def test_auth_app_can_see_create_route(set_auth_credentials, testapp):
+    """A logged-in user should be able to access the create view."""
+    response = testapp.post("/login", params={
+        "username": "testme",
+        "password": "foobar"
+    })
+    response = testapp.get("/new-expense")
+    assert response.status_code == 200
