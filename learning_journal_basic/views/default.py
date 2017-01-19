@@ -8,7 +8,8 @@ from pyramid.view import notfound_view_config
 
 from ..models import Entry
 import datetime
-
+from learnal_journal_basic.security import check_credentials
+from pyramid.security import remember, forget
 
 @view_config(route_name='list', renderer='templates/list.jinja2')
 def list_view(request):
@@ -58,5 +59,44 @@ def about_view(request):
     """View for about me."""
     return {}
 
+@view_config(route_name="login",
+             renderer="../templates/login.jinja2",
+             require_csrf=False)
+def login_view(request):
+    if request.POST:
+        username = request.POST["username"]
+        password = request.POST["password"]
+        if check_credentials(username, password):
+            auth_head = remember(request, username)
+            return HTTPFound(
+                request.route_url("list"),
+                headers=auth_head
+            )
+
+@view_config(route_name="logout")
+def logout_view(request):
+    auth_head = forget(request)
+    return HTTPFound(request.route_url("list"), headers=auth_head)
+    return {}
+
+@forbidden_view_config(renderer="../templates/forbidden.jinja2")
+def not_allowed_view(request):
+    """Some special stuff for the forbidden view."""
+    return {}
+
+
+@view_config(route_name="delete", permission="delete")
+def delete_view(request):
+    """To delete individual items."""
+    expense = request.dbsession.query(Expense).get(request.matchdict["id"])
+    request.dbsession.delete(expense)
+    return HTTPFound(request.route_url("list"))
+
+
+@view_config(route_name="api_list", renderer="string")
+def api_list_view(request):
+    expenses = request.dbsession.query(Expense).all()
+    output = [item.to_json() for item in expenses]
+    return output
 
 db_err_msg = """\
